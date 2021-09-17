@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FCC Legacy Front End Projects - Use the Twitch JSON API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jomhuria&family=Josefin+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/855ee508c4.js"
+      crossorigin="anonymous"
+    ></script>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <div class="flex">
+          <div class="wrap">
+            <i class="fab fa-twitch fa-3x" id="icon" title="Hide filters"></i>
+            <h1>Twitch Streamers</h1>
+          </div>
+
+          <div id="options">
+            <div class="active" id="all-filter">
+              <i class="fas fa-circle fa-sm"></i>
+              <p>All</p>
+            </div>
+
+            <div id="online-filter">
+              <i class="far fa-circle fa-sm"></i>
+              <p>Online</p>
+            </div>
+
+            <div id="offline-filter">
+              <i class="fas fa-circle-notch fa-sm"></i>
+              <p>Offline</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="loader">
+        <i class="fas fa-spinner fa-4x fa-spin"></i>
+      </div>
+
+      <div id="online" data-filter="online"></div>
+
+      <div id="offline" data-filter="offline"></div>
+
+      <footer>
+        <p>Created by Lucas Chapman</p>
+      </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

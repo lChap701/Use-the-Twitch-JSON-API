@@ -1,0 +1,305 @@
+/* Color palette was based on https://colorswall.com/palette/414/ */
+
+/* Colors */
+$color: #fff;
+$twitch-color: #6441a4;
+$bg: #19171c;
+$sec-bg: #010001;
+$shadow-color: lighten($twitch-color, 15%);
+
+$online-bg: $twitch-color;
+$online-border-color: #0ed9af;
+
+$offline-bg: #0e9dd9;
+$offline-border-color: #4c41a4;
+
+$img-border-color: #bbb;
+
+/* Borders */
+$online-border: 3px solid $online-border-color;
+$offline-border: 3px solid $offline-border-color;
+$img-border: 3px solid $img-border-color;
+
+/* Shadows */
+$text-shadow: 0-3px 0 $twitch-color, 0 -3px 0 $twitch-color,
+  0 3px 0 $twitch-color, 0 3px 0 $twitch-color, -3px 0 0 $twitch-color,
+  3px 0 0 $twitch-color, -3px 0 0 $twitch-color, 3px 0 0 $twitch-color,
+  -3px -3px 0 $twitch-color, 3px -3px 0 $twitch-color, -3px 3px 0 $twitch-color,
+  3px 3px 0 $twitch-color, -3px 9px 0 $twitch-color, 0px 9px 0 $twitch-color,
+  3px 9px 0 $twitch-color;
+
+$text-shadow-sec: 0-1px 0 $twitch-color, 0 -1px 0 $twitch-color,
+  0 1px 0 $twitch-color, 0 1px 0 $twitch-color, -1px 0 0 $twitch-color,
+  1px 0 0 $twitch-color, -1px 0 0 $twitch-color, 1px 0 0 $twitch-color,
+  -1px -1px 0 $twitch-color, 1px -1px 0 $twitch-color, -3px 3px 0 $twitch-color,
+  1px 1px 0 $twitch-color, -1px 3px 0 $twitch-color, 0px 3px 0 $twitch-color,
+  1px 3px 0 $twitch-color;
+
+$box-shadow: 0 0 calc(100vw / 10) $shadow-color;
+
+/* Transitions */
+$grow: width 0.5s linear;
+$visibility: opacity 0.25s ease-in-out;
+
+/* global */
+:focus {
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  color: $color;
+  background: $bg;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+h1 {
+  font-size: 3em;
+  text-shadow: $text-shadow;
+  letter-spacing: 3px;
+  margin: 10px 0 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: $img-border;
+}
+
+header {
+  font-family: "Jomhuria", cursive;
+  text-transform: uppercase;
+  background: $sec-bg;
+  padding: 10px 0 10px 20px;
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    .fa-twitch {
+      color: $twitch-color;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        color: $color;
+      }
+    }
+  }
+}
+
+footer {
+  @extend header;
+  text-shadow: $text-shadow-sec;
+  font-size: 2em;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 0 !important;
+  p {
+    margin: 0;
+  }
+}
+
+/* container */
+#container {
+  margin: auto;
+  max-width: 1000px;
+  width: 95%;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+
+  #options {
+    overflow: hidden;
+    opacity: 1;
+    transition: $visibility;
+    div {
+      overflow: hidden;
+      cursor: pointer;
+      float: right;
+      clear: right;
+      width: 30px;
+      height: 30px;
+      color: inherit;
+      background: lighten($twitch-color, 15%);
+      margin-bottom: 4px;
+      padding: 5px;
+      &:hover,
+      &.active {
+        width: 75px;
+        transition: $grow;
+      }
+    }
+
+    i {
+      margin: 3px 0;
+    }
+
+    p {
+      font-size: 0.9em;
+      float: right;
+      margin: 5px 0;
+    }
+
+    .far.fa-circle {
+      color: $online-bg;
+    }
+
+    .fa-circle-notch {
+      color: $offline-bg;
+    }
+  }
+
+  .row {
+    display: grid;
+    align-items: center;
+    padding: 18px;
+    width: 100%;
+    &:hover {
+      color: darken($color, 10%);
+      img {
+        border-color: darken($img-border-color, 10%);
+        filter: brightness(70%);
+      }
+    }
+  }
+
+  .hide {
+    display: none;
+  }
+
+  /* loader */
+  #loader {
+    background: $online-bg;
+    text-align: center;
+    border-top: $online-border;
+    border-bottom: $online-border;
+    padding: 30px;
+  }
+
+  /* online */
+  #online {
+    background: $online-bg;
+    .row {
+      grid-template-columns: 12% 20% 68%;
+      border-bottom: $online-border;
+      &:hover {
+        background: darken($online-bg, 10%);
+      }
+      &:first-child {
+        border-top: $online-border;
+      }
+    }
+  }
+
+  /* For when the offline-filter is clicked */
+  .hide + #offline {
+    .row {
+      &:first-child {
+        border-top: $offline-border;
+      }
+    }
+  }
+
+  /* offline */
+  #offline {
+    background: $offline-bg;
+    .row {
+      grid-template-columns: 12% 63% 25%;
+      border-bottom: $offline-border;
+      &:hover {
+        background: darken($offline-bg, 10%);
+      }
+    }
+  }
+}
+
+/* Media queries */
+@media only screen and (min-width: 970px) {
+  html {
+    font-size: 1.25rem;
+  }
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
+
+  #options {
+    div {
+      width: 36px !important;
+      height: 36px !important;
+      &:hover,
+      &.active {
+        width: 81px !important;
+      }
+
+      p {
+        margin: 5px 0 !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 969px) {
+  body {
+    margin: 0;
+  }
+
+  #container {
+    width: 100%;
+  }
+
+  .hideable {
+    display: none;
+  }
+
+  .row {
+    grid-template-columns: 15% 20% 65% !important;
+  }
+}
+
+@media only screen and (max-width: 654px) {
+  .row {
+    grid-template-columns: 20% 25% 55% !important;
+    grid-gap: 0 10px;
+    i {
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 516px) {
+  h1 {
+    font-size: 4em;
+    text-shadow: $text-shadow;
+    letter-spacing: 4px;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  #container {
+    header {
+      padding-right: 75px;
+      #options {
+        position: fixed;
+        right: 0;
+        top: 0;
+        
+      }
+    }
+    
+    .row {
+      padding-right: 75px;
+      grid-gap: 0 35px !important;
+    }
+  }
+}
