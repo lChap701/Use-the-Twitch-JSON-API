@@ -3,5 +3,5 @@ A project that I created for freeCodeCamp that displays Twitch JSON API. For mor
 
 ## Resources
 [CodePen Version](https://codepen.io/lchap701/full/eYWOOxq)\
-[API](https://weather-proxy.freecodecamp.rocks/)
+[API](https://twitch-proxy.freecodecamp.rocks)
 
