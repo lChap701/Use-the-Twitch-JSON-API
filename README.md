@@ -1,4 +1,4 @@
-# Use-the-Twitch-JSON-API
+# Use the Twitch JSON API
 A project that I created for freeCodeCamp that displays Twitch JSON API. For more information, you can view the instructions [here](https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/use-the-twitch-json-api).
 
 ## Resources
